@@ -61,6 +61,8 @@ DEFAULT_LOGS_DIR = os.path.join(ROOT_DIR, "logs")
 ############################################################
 #  Configurations
 ############################################################
+
+category = 'food'
 class_names = ['bread-wholemeal', 'potatoes-steamed', 'broccoli', 'butter', 
             'hard-cheese', 'water', 'banana', 'wine-white', 'bread-white', 
             'apple', 'pizza-margherita-baked', 'salad-leaf-salad-green', 
@@ -76,11 +78,11 @@ class CustomConfig(Config):
     Derives from the base Config class and overrides some values.
     """
     # Give the configuration a recognizable name
-    NAME = 'food'
+    NAME = category
 
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
-    IMAGES_PER_GPU = 2
+    IMAGES_PER_GPU = 1
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 40  # Background + toy
@@ -105,7 +107,7 @@ class CustomDataset(utils.Dataset):
         """
         # Add classes. We have only one class to add.
         for i in range(1,len(class_names)+1):
-            self.add_class("food", i, class_names[i-1])
+            self.add_class(category, i, class_names[i-1])
 
         # Train or validation dataset?
         assert subset in ["train", "val"]
@@ -160,7 +162,7 @@ class CustomDataset(utils.Dataset):
                     class_ids.append(class_names.index(category_ids[idx]['name'])+1)
 
                 self.add_image(
-                    "food",  ## for a single class just add the name here
+                    category,  ## for a single class just add the name here
                     image_id=img['file_name'],  # use file name as a unique image id
                     path=image_path,
                     width=w, height=h,
@@ -177,7 +179,7 @@ class CustomDataset(utils.Dataset):
         """
         # If not a bottle dataset image, delegate to parent class.
         image_info = self.image_info[image_id]
-        if image_info["source"] != "food":
+        if image_info["source"] != category:
             return super(self.__class__, self).load_mask(image_id)
         
         
@@ -199,7 +201,7 @@ class CustomDataset(utils.Dataset):
     def image_reference(self, image_id):
         """Return the path of the image."""
         info = self.image_info[image_id]
-        if info["source"] == "food":
+        if info["source"] == category:
             return info["path"]
         else:
             super(self.__class__, self).image_reference(image_id)
