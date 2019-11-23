@@ -1,0 +1,2 @@
+put here 'annotations.json' annotation file
+put here the 'images' folder
