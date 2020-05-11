@@ -1,5 +1,5 @@
 # Custom_Train_MaskRCNN
-![](https://img.shields.io/badge/<Implementation>-<Custom Training>-<success>)
+![](https://img.shields.io/badge/<implementation>-<customtrain>-<success>)
 
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R5R11K2H4)
