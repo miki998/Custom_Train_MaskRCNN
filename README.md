@@ -1,4 +1,9 @@
 # Custom_Train_MaskRCNN
+![](https://img.shields.io/badge/<Implementation>-<Custom Training>-<success>)
+
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R5R11K2H4)
+
 Training on custom dataset with (multi/unique class) of a Mask RCNN
 
 ### Requirements (no specific version requirements)
